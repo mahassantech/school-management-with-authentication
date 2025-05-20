@@ -1,0 +1,31 @@
+body{
+    background: none;
+   background-color: #E6F7FF !important;
+}
+.navbar-brand{
+    font-size: 25px;
+}
+.nav-item{
+    font-size: 20px;
+}
+.nav-item :hover{
+    color: aqua;
+}
+.navbar-brand:hover{
+    color: aqua;
+}
+.navbar-nav{
+    padding-left: 250px;
+    color: aliceblue;
+}
+.div-container{
+    padding-left: 8%;
+    padding-right: 8%;
+    padding: 5%;
+}
+.student{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    color: rgb(1, 9, 17);
+}

@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form action="" method='POST' style='width: 50%; margin :auto;'>
+    <h1 class="text-warning">Update Your Information</h1>
+
+    {% csrf_token %}
+{{form | crispy}}
+<button class='btn btn-primary'>Update</button>
+</form>
+{% endblock content %}

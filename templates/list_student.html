@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+{% block content %}
+{%if student%}
+<h1 class='student'>Students Data</h1>
+<div class="div-container">
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First_Name</th>
+                <th scope="col">Last_Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Department</th>
+                <th scope="col">Phone_No</th>
+                <th scope="col">Action</th>
+              </tr>
+        </thead>
+        <tbody>
+            {% for st in student %}
+          <tr>
+            <th scope="row">{{st.id}}</th>
+            <td>{{st.First_name}}</td>
+            <td>{{st.Last_name}}</td>
+            <td>{{st.Email}}</td>
+            <td>{{st.Department}}</td>
+            <td>{{st.Phone_NO}}</td>
+            <td >
+
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewModal{{st.id}}"><i class="fa-solid fa-circle-info"></i> View</button>
+
+               <!-- Modal -->
+               <div class="modal fade" id="viewModal{{st.id}}" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel{{st.id}}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewModalLabel{{st.id}}">Student: {{st.First_name}} {{st.Last_name}} </h5>
+
+                        </div>
+                        <div class="modal-body">
+                            <ul style="list-style-type:none;">
+                                <li>Student id : <strong> {{st.id}} </strong></li>
+                                <li>Student First Name : <strong> {{st.First_name}} </strong></li>
+                                <li>Student Last Name : <strong>  {{st.Last_name}}</strong></li>
+                                <li>Student email id : <strong> {{st.Email}} </strong></li>
+                                <li>Student Department<strong> {{st.Department}} </strong></li>
+                                <li>Student phone no : <strong> {{st.Phone_NO}}</strong></li>
+                            </ul>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+<a href="{% url "edit_student" st.id %}"><button type="button" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a>
+
+<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ st.id }}">
+    <i class="fa-solid fa-trash"></i> Delete
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal{{ st.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ st.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel{{ st.id }}">Confirm Deletion</h5>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete the student?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'delete' st.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {%else%}
+      <div class="alert alert-warning text-center" role="alert">
+        No data found
+      </div>
+      
+
+      {%endif%}
+
+</div>
+
+
+{% endblock content %}
