@@ -31,14 +31,14 @@ def Edit_Student(request,id):
 
 def Add_Student(request):
     if request.user.is_authenticated:
-        if request.method =="POST":
-            form=StudentForm(request.POST)
+        if request.method == "POST":
+            form = StudentForm(request.POST)
             if form.is_valid():
                 form.save()
                 return redirect('home')
-            else:
-                form=StudentForm()
-            return render(request,'add_student.html',{'form': form})
+        else:
+            form = StudentForm()
+        return render(request, 'add_student.html', {'form': form})
     else:
         return redirect('login')    
 

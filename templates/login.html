@@ -5,6 +5,7 @@
     <h1>Login Page</h1>
     {% csrf_token %}
 {{form | crispy}}
-<button class='btn btn-warning'>login</button>
+<button class='btn btn-warning'>login</button> <br> <br>
+<p> Don't have an account ? <a href="{% url 'register'%}">Register Here</a></p>
 </form>
 {% endblock content %}
